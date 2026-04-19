@@ -156,7 +156,7 @@ var WildRydes = window.WildRydes || {};
 
     function handleVerify(event) {
         var email = $('#emailInputVerify').val();
-        var code = $('#confirmationCode').val().trim();
+        var code = $('#confirmationCode').val();
         event.preventDefault();
         verify(email, code,
             function verifySuccess(result) {
