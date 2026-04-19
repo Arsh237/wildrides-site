@@ -114,17 +114,19 @@ var WildRydes = window.WildRydes || {};
         $('#verifyForm').submit(handleVerify);
     });
 
-    function handleSignin(event) {
+   function handleSignin(event) {
         var email = $('#emailInputSignin').val().trim();
         var password = $('#passwordInputSignin').val();
         event.preventDefault();
+        
         signin(email, password,
             function signinSuccess() {
                 console.log('Successfully Logged In');
-                window.location.href = 'ride.html';
+                // This leads you to the next required page (the Ride map)
+                window.location.href = 'ride.html'; 
             },
             function signinError(err) {
-                alert(err);
+                alert(err.message || JSON.stringify(err));
             }
         );
     }
