@@ -105,7 +105,7 @@ var WildRydes = window.WildRydes || {};
     }
 
     /*
-     *  Event Handlers
+     * Event Handlers
      */
 
     $(function onDocReady() {
@@ -115,7 +115,7 @@ var WildRydes = window.WildRydes || {};
     });
 
     function handleSignin(event) {
-        var email = $('#emailInputSignin').val();
+        var email = $('#emailInputSignin').val().trim();
         var password = $('#passwordInputSignin').val();
         event.preventDefault();
         signin(email, password,
@@ -130,7 +130,7 @@ var WildRydes = window.WildRydes || {};
     }
 
     function handleRegister(event) {
-        var email = $('#emailInputRegister').val();
+        var email = $('#emailInputRegister').val().trim();
         var password = $('#passwordInputRegister').val();
         var password2 = $('#password2InputRegister').val();
 
@@ -155,9 +155,18 @@ var WildRydes = window.WildRydes || {};
     }
 
     function handleVerify(event) {
-        var email = $('#emailInputVerify').val();
-        var code = $('#confirmationCode').val();
+        // FIXED: Using .trim() to remove whitespace and updated ID to match your HTML
+        var email = $('#emailInputVerify').val().trim();
+        var code = $('#codeInputVerify').val().trim(); 
+        
         event.preventDefault();
+
+        // Validation check to prevent MissingRequiredParameter error
+        if (!code) {
+            alert("Please enter the verification code.");
+            return;
+        }
+
         verify(email, code,
             function verifySuccess(result) {
                 console.log('call result: ' + result);
