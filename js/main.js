@@ -17,6 +17,6 @@ export async function signOutRedirect () {
     const clientId = "5ahf1ok3n9f61do1tnlefcbsfi";
     const logoutUri = "https://d84l1y8p4kdic.cloudfront.net"; 
     // Replace <user pool domain> with your actual Cognito domain from the AWS console
-    const cognitoDomain = "https://your-user-pool-domain.auth.us-east-1.amazoncognito.com";
+    const cognitoDomain = "https://wildrydes-your-unique-name.auth.us-east-1.amazoncognito.com";
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
 };
