@@ -3,7 +3,7 @@
 var WildRydes = window.WildRydes || {};
 
 (function scopeWrapper($) {
-    var signinUrl = '/signin.html';
+   var signinUrl = 'signin.html';
 
     var poolData = {
         UserPoolId: _config.cognito.userPoolId,
@@ -167,16 +167,18 @@ var WildRydes = window.WildRydes || {};
             return;
         }
 
-        verify(email, code,
-            function verifySuccess(result) {
-                console.log('call result: ' + result);
-                console.log('Successfully verified');
-                alert('Verification successful. You will now be redirected to the login page.');
-                window.location.href = signinUrl;
-            },
-            function verifyError(err) {
-                alert(err);
-            }
-        );
+     verify(email, code,
+    function verifySuccess(result) {
+        console.log('Successfully verified');
+        // Using alert blocks the script execution until you click 'OK'
+        alert('Verification successful. You will now be redirected to the login page.');
+        
+        // Ensure the browser goes exactly to signin.html in the current folder
+        window.location.assign(signinUrl); 
+    },
+    function verifyError(err) {
+        alert(err.message || JSON.stringify(err));
+    }
+);
     }
 }(jQuery));
